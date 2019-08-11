@@ -15,8 +15,8 @@ s = tvm.create_schedule(C.op)
 bx, tx = s[C].split(C.op.axis[0], factor=64)
 
 with tvm.build_config(dump_pass_ir=True):
-    fadd = tvm.build(s, [A, B, C], tgt, target_host=tgt_host, name="myadd")
+    fadd = tvm.build(s, [A, B, C], tgt,name="myadd")
 
-# print(fadd.get_source())
+print(fadd.get_source())
 
 print("finished.")
