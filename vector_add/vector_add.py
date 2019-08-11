@@ -12,5 +12,5 @@ print(type(C))
 s = tvm.create_schedule(C.op)
 bx, tx = s[C].split(C.op.axis[0], factor=64)
 
-fadd = tvm.build(s, [A, B, C], 'llvm', target_host=tgt_host, name="myadd")
+fadd = tvm.build(s, [A, B, C], tvm.target.current_target(), target_host=tgt_host, name="myadd")
 print(fadd.get_source())
